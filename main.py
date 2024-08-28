@@ -28,8 +28,8 @@ class Game:
         
     def draw(self):
         self.screen.fill('black')
-        self.map.draw()
-        self.player.draw()
+        #self.map.draw()
+        #self.player.draw()
         
     def run(self):
         while True:
