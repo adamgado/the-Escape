@@ -52,9 +52,13 @@ class Raycasting:
                 depth = depth_hor
                 
             # temporary view for testing
-            pg.draw.line(self.game.screen, 'yellow', (100 * player_x, 100 * player_y),
-                         (100 * player_x + 100 * depth * cos_ray, 100 * player_y + 100 * depth * sin_ray), 2)
+            #pg.draw.line(self.game.screen, 'yellow', (100 * player_x, 100 * player_y),
+                         #(100 * player_x + 100 * depth * cos_ray, 100 * player_y + 100 * depth * sin_ray), 2)
             
+            projected_height = SCREEN / (depth + 0.00001)
+
+            pg.draw.rect(self.game.screen, 'white', (ray * SCALE, (HEIGHT // 2) - projected_height // 2, SCALE, projected_height))
+
             ray_angle += RAYS_ANGLE
     
     def update(self):
