@@ -1,12 +1,30 @@
 import pygame as pg
 from settings import *
-from pathlib import Path
+
 
 class Render:
     def __init__(self, game):
         self.game = game
         self.game.screen = game.screen
         self.wall_texture = self.wall_textures()
+        self.ceil = self.load_texture('textures/ceiling.png', (WIDTH, HEIGHT // 2))
+        self.ceil_offset = 0
+
+    def draw(self):
+        self.draw_ceiling()
+        self.objects_render()
+        
+        
+    def draw_ceiling(self):
+        self.ceil_offset = (self.ceil_offset + 4.0 * self.game.player.rel) % WIDTH
+        self.game.screen.blit(self.ceil, (-self.ceil_offset, 0))
+        self.game.screen.blit(self.ceil, (-self.ceil_offset + WIDTH, 0))
+        pg.draw.rect(self.game.screen, FLOOR, (0, (HEIGHT // 2), WIDTH, HEIGHT))
+        
+    def objects_render(self):
+        objects_list = self.game.raycasting.objects
+        for depth, image, pos in objects_list:
+            self.game.screen.blit(image, pos)
         
     @staticmethod
     def load_texture(path, res=(TEXTURE, TEXTURE)):
@@ -14,5 +32,4 @@ class Render:
         return pg.transform.scale(texture, res)
     
     def wall_textures(self):
-        texture_path = str(Path.cwd()) + 'textures\wall.avif'
-        return self.load_texture(texture_path)
+        return self.load_texture('textures/wall.jpg')
