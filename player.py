@@ -8,6 +8,13 @@ class Player:
         self.game = game
         self.x, self.y = PLAYER_POSITION
         self.angle = PLAYER_ANGLE
+        self.shot = False
+        
+    def fire(self, event):
+        if event.type == pg.MOUSEBUTTONDOWN:
+            if event.button == 1 and not self.shot and not self.game.weapon.reloading:
+                self.shot = True
+                self.game.weapon.reloading = True
         
     def move(self):
         sin_a = math.sin(self.angle)
@@ -74,4 +81,5 @@ class Player:
         
     @property
     def map_pos(self):
+        
         return int(self.x), int(self.y)
