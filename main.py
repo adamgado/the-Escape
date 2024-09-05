@@ -5,6 +5,7 @@ from map import *
 from player import *
 from raycasting import *
 from texturesnobjects import *
+from weapon import *
 
 
 class Game:
@@ -21,10 +22,12 @@ class Game:
         self.player = Player(self)
         self.render = Render(self)
         self.raycasting = Raycasting(self)
+        self.weapon = Weapon(self)
     
     def update(self):
         self.player.update()
         self.raycasting.update()
+        self.weapon.update()
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pg.display.set_caption(f'{self.clock.get_fps() :.1f}')
@@ -32,6 +35,7 @@ class Game:
     def draw(self):
         #self.screen.fill('black')
         self.render.draw()
+        self.weapon.draw()
         #self.map.draw()
         #self.player.draw()
         
@@ -46,6 +50,7 @@ class Game:
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 pg.quit()
                 sys.exit()
+            self.player.fire(event)
                 
 
 if __name__ == '__main__':
