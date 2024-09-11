@@ -6,6 +6,9 @@ from player import *
 from raycasting import *
 from texturesnobjects import *
 from weapon import *
+from sound import *
+from npc import *
+from npc_render import *
 
 
 class Game:
@@ -22,11 +25,16 @@ class Game:
         self.player = Player(self)
         self.render = Render(self)
         self.raycasting = Raycasting(self)
+        self.npc = Npc(self)
+        self.npc_render = Npc_render(self)
         self.weapon = Weapon(self)
-    
+        self.sound = Sound(self)
+
     def update(self):
         self.player.update()
         self.raycasting.update()
+        self.npc.update()
+        self.npc_render.update()
         self.weapon.update()
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)

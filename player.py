@@ -13,6 +13,7 @@ class Player:
     def fire(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
             if event.button == 1 and not self.shot and not self.game.weapon.reloading:
+                self.game.sound.gun.play()
                 self.shot = True
                 self.game.weapon.reloading = True
         
@@ -81,5 +82,4 @@ class Player:
         
     @property
     def map_pos(self):
-        
         return int(self.x), int(self.y)
