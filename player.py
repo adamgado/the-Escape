@@ -9,6 +9,32 @@ class Player:
         self.x, self.y = PLAYER_POSITION
         self.angle = PLAYER_ANGLE
         self.shot = False
+        self.health = MAX_HEALTH
+        self.recovery_delay = 700
+        self.time_prev = pg.time.get_ticks()
+        
+    def check_death(self):
+        if self.health < 1:
+            self.game.render.game_over()
+            pg.display.flip()
+            pg.time.delay(1500)
+            self.game.new_game()
+            
+    def recovery(self):
+        if self.check_recovery() and self.health < MAX_HEALTH:
+            self.health += 1
+            
+    def check_recovery(self):
+        time_now = pg.time.get_ticks()
+        if time_now - self.time_prev > self.recovery_delay:
+            self.time_prev = time_now
+            return True
+    
+    def take_damage(self, damage):
+        self.health -= damage
+        self.game.render.player_damage()
+        self.game.sound.player_pain.play()
+        self.check_death()
         
     def fire(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
@@ -57,6 +83,7 @@ class Player:
     def update(self):
         self.move()
         self.mouse()
+        self.recovery()
         
     def wall(self, x, y):
         return (x, y) not in self.game.map.world_map

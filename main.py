@@ -18,6 +18,9 @@ class Game:
         self.screen = pg.display.set_mode(RES)
         self.clock = pg.time.Clock()
         self.delta_time = 1
+        self.u_trigger = False
+        self.u_event = pg.USEREVENT + 0
+        pg.time.set_timer(self.u_event, 40)
         self.new_game()
         
     def new_game(self):
@@ -33,7 +36,6 @@ class Game:
     def update(self):
         self.player.update()
         self.raycasting.update()
-        self.npc.update()
         self.npc_render.update()
         self.weapon.update()
         pg.display.flip()
@@ -54,10 +56,13 @@ class Game:
             self.events()
             
     def events(self):
+        self.u_trigger = False
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 pg.quit()
                 sys.exit()
+            elif event.type == self.u_event:
+                self.u_trigger = True
             self.player.fire(event)
                 
 
