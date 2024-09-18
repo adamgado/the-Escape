@@ -9,9 +9,11 @@ from weapon import *
 from sound import *
 from npc import *
 from npc_render import *
+"""primary game engine"""
 
 
 class Game:
+    """class that starts the game and runs all other functions inside it"""
     def __init__(self):
         pg.init()
         pg.mouse.set_visible(False)
