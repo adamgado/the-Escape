@@ -3,9 +3,11 @@ from collections import deque
 import os
 from random import randint, random, choice
 from settings import *
+"""functions that control npc logic and display and generation"""
 
 
 class Npc:
+    """function that creates an npc and all their attributes, logic and animation"""
     def __init__(self, game, path='textures/npcs/0.png', pos=(10.5, 5.5),
                  scale=0.8, shift=0.25, animation=180):
         self.game = game
