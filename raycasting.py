@@ -2,9 +2,11 @@ import pygame as pg
 from settings import *
 import math
 from texturesnobjects import *
+""""raycasting to display the map and 3d projections"""
 
 
 class Raycasting:
+    """class that generates rays to reflect player vision and rendering"""
     def __init__(self, game):
         self.game = game
         self.result = []
