@@ -1,9 +1,11 @@
 from settings import *
 import pygame as pg
 import math
+"""player controls and properties"""
 
 
 class Player:
+    """class that manages the player stats, controls and functions"""
     def __init__(self, game):
         self.game = game
         self.x, self.y = PLAYER_POSITION
