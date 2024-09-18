@@ -1,7 +1,9 @@
 import pygame as pg
+"""add audio to the game"""
 
 
 class Sound:
+    """class that initializes the sounds to be called in game"""
     def __init__(self, game):
         self.game = game
         pg.mixer.init()
