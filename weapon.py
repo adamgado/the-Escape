@@ -2,9 +2,11 @@ import pygame as pg
 from settings import *
 from collections import deque
 import os
+"""add a weapon to the game"""
 
 
 class Weapon:
+    """class that runs the weapon and its functions and animations"""
     def __init__(self, game, path='textures/weapon/0.png', scale=0.4, animation=90):
         self.game = game
         self.player = game.player
