@@ -1,4 +1,5 @@
 import pygame as pg
+"""function that creates and displays map"""
 
 _ = False
 mini_map = [
@@ -23,6 +24,7 @@ mini_map = [
 
 
 class Map():
+    """Class that manages the game map and all related functions"""
     def __init__(self, game):
         self.game = game
         self.mini_map = mini_map
