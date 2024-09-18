@@ -1,7 +1,9 @@
 from npc import *
+"""function that places all npcs on the map and generates new ones"""
 
 
 class Npc_render:
+    """class to render NPCs on the map"""
     def __init__(self, game):
         self.game = game
         self.npc_list = []
