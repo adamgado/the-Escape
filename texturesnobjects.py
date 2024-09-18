@@ -1,8 +1,10 @@
 import pygame as pg
 from settings import *
+"""render textures onto objects, npcs and the map"""
 
 
 class Render:
+    """class that renders the textures for anything in the game"""
     def __init__(self, game):
         self.game = game
         self.game.screen = game.screen
